@@ -78,9 +78,9 @@ const destructuring = {
 // using assignment destructuring create two new variables, objects and arrays,
 // with the values taken from the above object
 
-	let {objects, arrays} = destructuring;
-	// let objects = destructuring.objects;
-  // let arrays = destructuring.arrays;
+let {objects, arrays} = destructuring;
+// let objects = destructuring.objects;
+// let arrays = destructuring.arrays;
 
 // do not modify
 const vocabAgain = [ "let", "const", "destructuring", "spread", "rest", "arrow function" ];
@@ -138,13 +138,33 @@ let toPower = (num, exp=2) => Math.pow(num,exp);
 // any number of parameters and returns an object with two properties - even and odd.
 // this function should check each parameter and push it to the appropriate property.
 
-
+let evenOdd = (...stuff) => {
+	let toReturn = {
+		even: [],
+		odd:  []
+	};
+	for (var i=0; i < stuff.length; i++) {
+		if (stuff[i] % 2 == 0) {
+			toReturn.even.push(stuff[i]);
+		} else {
+			toReturn.odd.push(stuff[i]);
+		}
+	}
+	return toReturn;
+};
 
 // write a function named multiply that takes in a num parameter and an arbitrary amount of
 // additional numbers. This function should return an array of each additional number
 // multiplied by num.
 
-
+let multiply = (num, ...varNums) => {
+	var toReturn = [];
+	for (var i = 0; i < varNums.length; i++) {
+		let test = num * varNums[i];
+		toReturn.push(test);
+	}
+	return toReturn;
+};
 
 // do not modify
 const bits = [ 2, 4, 8, 16, 32, 64, 128 ];
@@ -152,6 +172,8 @@ const bits = [ 2, 4, 8, 16, 32, 64, 128 ];
 // using an arrow function and the built in .map method, create a new array
 // named mooresBits. mooresBits should be the bits array doubled.
 
+let mooresBits = bits.map((n) => n*2);
+console.log(mooresBits);
 
 // do not modify
 const that = {
@@ -162,3 +184,6 @@ const that = {
 
 // using an arrow function, add a property named arrow that returns the window object
 // do this without using the window keyword. HINT: The default binding of the this keyword
+
+that.arrow = () => this;
+console.log(that.arrow());
